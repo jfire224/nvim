@@ -1,6 +1,6 @@
 -- since this is just an example spec, don't actually load anything here and return an empty spec
 -- stylua: ignore
-if true then return {} end
+-- if true then return {} end
 
 -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
 --
@@ -116,27 +116,28 @@ return {
   { import = "lazyvim.plugins.extras.lang.typescript" },
 
   -- add more treesitter parsers
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "bash",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "query",
-        "regex",
-        "tsx",
-        "typescript",
-        "vim",
-        "yaml",
-      },
-    },
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   opts = {
+  --     ensure_installed = {
+  --       "bash",
+  --       "html",
+  --       "javascript",
+  --       "json",
+  --       "lua",
+  --       "markdown",
+  --       "markdown_inline",
+  --       "python",
+  --       "query",
+  --       "regex",
+  --       "tsx",
+  --       "typescript",
+  --       "vim",
+  --       "yaml",
+  --       "clang",
+  --     },
+  --   },
+  -- },
 
   -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
   -- would overwrite `ensure_installed` with the new value.
@@ -194,4 +195,12 @@ return {
       },
     },
   },
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+    opts = {
+      rocks = { "fzy", "pathlib.nvim ~> 1.0" }, -- specifies a list of rocks to install
+      -- luarocks_build_args = { "--with-lua=/my/path" }, -- extra options to pass to luarocks's configuration script
+    },
+  }
 }
